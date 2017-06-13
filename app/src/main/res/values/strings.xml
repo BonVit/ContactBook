@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ContactBook</string>
+
+    <string name="google_sign_in_failed">Failed!</string>
 </resources>
