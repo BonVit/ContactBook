@@ -22,11 +22,10 @@ public class DaoDatabase implements IDatabase {
 
     private static final String DB_NAME = "contact-book-db";
 
-    private Context mContext;
     private DaoSession mDaoSession;
 
     public DaoDatabase(Context context) {
-        mContext = context;
+        Context mContext = context;
         DevOpenHelper helper = new DevOpenHelper(mContext, DB_NAME);
         Database db = helper.getWritableDb();
         mDaoSession = new DaoMaster(db).newSession();
