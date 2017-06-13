@@ -13,6 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.vb.contactbook.mvp.view.LoginView;
+import com.vb.contactbook.utils.GoogleUtils;
 
 /**
  * Created by bonar on 6/13/2017.
@@ -39,16 +40,11 @@ public class LoginPresenter extends MvpPresenter<LoginView> implements GoogleApi
     }
 
     private void initGoogleClient() {
-        mGoogleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .requestProfile()
-                .requestId()
-                .build();
+        mGoogleSignInOptions = GoogleUtils.getGoogleSignInOptions();
 
-        mGoogleApiClient = new GoogleApiClient.Builder(mFragmentActivity)
-                .enableAutoManage(mFragmentActivity, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, mGoogleSignInOptions)
-                .build();
+        mGoogleApiClient = GoogleUtils.getGoogleApiClient(mFragmentActivity,
+                this,
+                mGoogleSignInOptions);
     }
 
     public void signInWithGoogle() {
