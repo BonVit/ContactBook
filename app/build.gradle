@@ -11,7 +11,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.vb.contactbook"
-        minSdkVersion 14
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -51,5 +51,12 @@ dependencies {
 
     /*Google*/
     compile 'com.google.android.gms:play-services-auth:9.0.0'
+
+    /*Design*/
+    compile 'com.android.support:design:25.3.1'
+}
+
+greendao {
+    schemaVersion 1
 }
 
