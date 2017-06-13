@@ -15,6 +15,9 @@ buildscript {
 
         /*GreenDAO*/
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+
+        /*Google*/
+        classpath 'com.google.gms:google-services:3.0.0'
     }
 }
 

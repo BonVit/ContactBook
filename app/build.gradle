@@ -3,6 +3,9 @@ apply plugin: 'com.android.application'
 /*GreenDAO*/
 apply plugin: 'org.greenrobot.greendao'
 
+/*Google*/
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -45,5 +48,8 @@ dependencies {
     compile "com.google.dagger:dagger:2.9"
     annotationProcessor "com.google.dagger:dagger-compiler:2.9"
     provided 'javax.annotation:jsr250-api:1.0'
+
+    /*Google*/
+    compile 'com.google.android.gms:play-services-auth:9.0.0'
 }
 
