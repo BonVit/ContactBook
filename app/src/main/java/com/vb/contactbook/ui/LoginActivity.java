@@ -1,5 +1,6 @@
 package com.vb.contactbook.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -70,5 +71,11 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView,
         super.onActivityResult(requestCode, resultCode, data);
 
         mLoginPresenter.handleActivityResult(requestCode, resultCode, data);
+    }
+
+    public static Intent newIntent(Context context) {
+        Intent i = new Intent(context, LoginActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        return i;
     }
 }
