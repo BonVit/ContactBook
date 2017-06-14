@@ -4,4 +4,10 @@
     <item android:id="@+id/activity_main_menu_log_out"
         android:title="@string/menu_log_out"
         app:showAsAction="never"/>
+    <item android:id="@+id/activity_main_menu_sort_asc"
+        android:title="@string/name_sort_asc"
+        app:showAsAction="never"/>
+    <item android:id="@+id/activity_main_menu_sort_desc"
+        android:title="@string/name_sort_desc"
+        app:showAsAction="never"/>
 </menu>

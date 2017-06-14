@@ -4,4 +4,16 @@
     <string name="google_sign_in_failed">Failed!</string>
 
     <string name="menu_log_out">Log out</string>
+    <string name="name_sort_asc">Name asc</string>
+    <string name="name_sort_desc">Name desc</string>
+
+    <string name="login_success">Success!</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_firstName">First name</string>
+    <string name="hint_familyName">Family name</string>
+    <string name="hint_phone">Phone</string>
+
+    <string name="add_contact">Add contact</string>
+
 </resources>

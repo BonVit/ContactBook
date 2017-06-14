@@ -13,6 +13,8 @@ import com.vb.contactbook.mvp.model.entity.UserDao;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.util.List;
+
 /**
  * Created by bonar on 6/13/2017.
  */
@@ -39,14 +41,23 @@ public class DaoDatabase implements IDatabase {
         return qb.uniqueOrThrow();
     }
 
+    @Override
+    public List<Contact> getContacts(Long id) {
+        ContactDao contactDao = mDaoSession.getContactDao();
+        QueryBuilder<Contact> qb = contactDao.queryBuilder()
+                ;
+
+        return qb.list();
+    }
+
     public void insert(User user) {
         UserDao userDao = mDaoSession.getUserDao();
-        userDao.insert(user);
+        userDao.insertOrReplace(user);
     }
 
     public void insert(Contact contact) {
         ContactDao contactDao = mDaoSession.getContactDao();
-        contactDao.insert(contact);
+        contactDao.insertOrReplace(contact);
     }
 
 }

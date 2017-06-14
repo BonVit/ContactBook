@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+    <EditText
+        android:id="@+id/firstNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:maxLines="1"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_firstName" />
+
+    <EditText
+        android:id="@+id/familyNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/firstNameInput"
+        android:layout_below="@+id/firstNameInput"
+        android:ems="10"
+        android:maxLines="1"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_familyName" />
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/familyNameInput"
+        android:layout_below="@+id/familyNameInput"
+        android:ems="10"
+        android:maxLines="1"
+        android:inputType="textEmailAddress"
+        android:hint="@string/hint_email"/>
+
+    <EditText
+        android:id="@+id/phoneInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/emailInput"
+        android:layout_below="@+id/emailInput"
+        android:ems="10"
+        android:maxLines="1"
+        android:inputType="phone"
+        android:hint="@string/hint_phone"/>
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="@string/add_contact" />
+
+
+</RelativeLayout>

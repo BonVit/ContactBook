@@ -6,16 +6,13 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vb.contactbook.R;
 import com.vb.contactbook.mvp.presenter.MainPresenter;
 import com.vb.contactbook.mvp.view.MainView;
-import com.vb.contactbook.utils.SharedPreferences;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,8 +21,14 @@ import butterknife.ButterKnife;
  * Created by bonar on 6/13/2017.
  */
 
-public class MainActivity extends MvpAppCompatActivity implements MainView {
+public class MainActivity extends MvpAppCompatActivity implements MainView,
+        View.OnClickListener, AddContactFragment.FragmentCallbacks, ContactsFragment.OnLogOutCallback {
     public static final String TAG = "MainActivity";
+
+    @Override
+    public void onFragmentPopBack() {
+        mMainPresenter.onBackFromAddContact();
+    }
 
     /*Moxy mvp binding*/
     @InjectPresenter
@@ -48,42 +51,22 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.activity_main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.activity_main_menu_log_out:
-                mMainPresenter.logout();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        mFab.setOnClickListener(this);
     }
 
     @Override
     public void startLoginActivity() {
         Intent i = LoginActivity.newIntent(this);
-        SharedPreferences.setUserId(this, null);
         startActivity(i);
     }
 
     @Override
-    public void showContacts() {
+    public void addFragment(Fragment fragmentToAdd) {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.content);
 
         if (fragment == null) {
-            fragment = new ContactsFragment();
+            fragment = fragmentToAdd;
             fm.beginTransaction()
                     .add(R.id.content, fragment)
                     .commit();
@@ -91,4 +74,45 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.fab:
+                mMainPresenter.onAddContact();
+                break;
+        }
+    }
+
+    public void replaceFragment(Fragment fragmentToReplace) {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.content);
+
+        if (fragment != null) {
+            fragment = fragmentToReplace;
+            fm.beginTransaction()
+                    .replace(R.id.content, fragment)
+                    .commit();
+        }
+
+
+    }
+
+    @Override
+    public void setFabVisibility(boolean visibility) {
+        if(visibility)
+            mFab.setVisibility(View.VISIBLE);
+        else
+            mFab.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
+
+    @Override
+    public void onLogOut() {
+        mMainPresenter.logout();
+    }
 }

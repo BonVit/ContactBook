@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.vb.contactbook.R;
@@ -44,8 +45,9 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView,
 
         mGoogleSignInButton.setOnClickListener(this);
 
-        if(SharedPreferences.getUserId(this) != null)
+        if(SharedPreferences.getUserId(this) != null) {
             mLoginPresenter.signInWithGoogle();
+        }
     }
 
 
