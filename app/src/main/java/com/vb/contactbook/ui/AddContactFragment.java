@@ -10,12 +10,13 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vb.contactbook.R;
 import com.vb.contactbook.mvp.presenter.AddContactPresenter;
+import com.vb.contactbook.mvp.view.AddContactView;
 
 /**
  * Created by bonar on 6/13/2017.
  */
 
-public class AddContactFragment extends MvpAppCompatFragment {
+public class AddContactFragment extends MvpAppCompatFragment implements AddContactView {
 
     /*Moxy mvp binding*/
     @InjectPresenter

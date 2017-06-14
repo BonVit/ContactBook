@@ -7,5 +7,7 @@ import com.arellomobile.mvp.MvpView;
  */
 
 public interface LoginView extends MvpView {
-    void googleSignIn(boolean success);
+    void googleSignIn();
+    void login();
+    void signInResult(boolean success);
 }

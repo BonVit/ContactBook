@@ -1,7 +1,5 @@
 package com.vb.contactbook.mvp.view;
 
-import android.content.Intent;
-
 import com.arellomobile.mvp.MvpView;
 
 /**
@@ -10,4 +8,5 @@ import com.arellomobile.mvp.MvpView;
 
 public interface MainView extends MvpView {
     void startLoginActivity();
+    void showContacts();
 }

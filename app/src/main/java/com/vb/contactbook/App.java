@@ -6,6 +6,7 @@ import com.vb.contactbook.di.component.AppComponent;
 import com.vb.contactbook.di.component.DaggerAppComponent;
 import com.vb.contactbook.di.module.AppModule;
 import com.vb.contactbook.di.module.DatabaseModule;
+import com.vb.contactbook.di.module.GoogleModule;
 
 /**
  * Created by bonar on 6/13/2017.
@@ -26,6 +27,7 @@ public class App extends Application {
 
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .googleModule(new GoogleModule())
                 .databaseModule(new DatabaseModule())
                 .build();
     }

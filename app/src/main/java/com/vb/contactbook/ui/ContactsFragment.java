@@ -20,7 +20,7 @@ public class ContactsFragment extends MvpAppCompatFragment implements ContactsVi
 
     /*Moxy mvp binding*/
     @InjectPresenter
-    private ContactsPresenter mContactsPresenter;
+    ContactsPresenter mContactsPresenter;
 
     @Nullable
     @Override

@@ -17,6 +17,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
     public MainPresenter() {
         Log.d(TAG, "constructor");
 
+        getViewState().showContacts();
     }
 
     public void logout() {

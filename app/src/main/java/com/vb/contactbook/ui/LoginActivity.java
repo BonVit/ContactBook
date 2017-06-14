@@ -8,10 +8,13 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.vb.contactbook.R;
 import com.vb.contactbook.mvp.presenter.LoginPresenter;
 import com.vb.contactbook.mvp.view.LoginView;
+import com.vb.contactbook.utils.SharedPreferences;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,9 +42,10 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView,
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        mLoginPresenter.setup(this);
-
         mGoogleSignInButton.setOnClickListener(this);
+
+        if(SharedPreferences.getUserId(this) != null)
+            mLoginPresenter.signInWithGoogle();
     }
 
 
@@ -54,11 +58,22 @@ public class LoginActivity extends MvpAppCompatActivity implements LoginView,
         }
     }
 
+    @Override
+    public void googleSignIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mLoginPresenter.getGoogleApiClient());
+        startActivityForResult(signInIntent, mLoginPresenter.getGoogleSignInRequestCode());
+    }
 
     @Override
-    public void googleSignIn(boolean success) {
+    public void login() {
+        Intent i = MainActivity.newIntent(this);
+        startActivity(i);
+    }
+
+    @Override
+    public void signInResult(boolean success) {
         if(success) {
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT)
+            Toast.makeText(this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT)
                     .show();
         } else {
             Toast.makeText(this, getResources().getString(R.string.google_sign_in_failed), Toast.LENGTH_SHORT)
