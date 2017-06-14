@@ -38,9 +38,6 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
     @Inject
     IDatabase mDaoDatabase;
 
-    @Inject
-    GoogleSignInOptions mGoogleSignInOptions;
-
     public LoginPresenter() {
         Log.d(TAG, "constructor");
 
